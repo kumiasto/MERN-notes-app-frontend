@@ -1,0 +1,130 @@
+@import "config.scss";
+@import "mixin.scss";
+@import "devices-breakpoints.scss";
+
+#modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.container {
+  display: flex;
+  height: 89vh;
+  width: 100%;
+  background-color: $thirdColor;
+
+  &-page {
+    width: 100%;
+  }
+  &-header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $secondaryColor;
+    border-top: 1px solid $thirdColor;
+    text-align: center;
+    height: 12vh;
+  }
+}
+.arrow-back-icon {
+  position: absolute;
+  left: 15vh;
+  cursor: pointer;
+  color: $thirdColor;
+  font-size: 1.6rem;
+}
+
+.container-auth {
+  @include flexCenter;
+  height: 89vh;
+  width: 100;
+
+  &-form {
+    @include flexCenter;
+    width: 40%;
+    height: 70vh;
+    overflow: hidden;
+    background-color: $primaryColor;
+    color: $thirdColor;
+    box-shadow: 5px 5px 17px 5px rgba(99, 65, 0, 0.4);
+    border-radius: 20px;
+
+    @media (max-width: $sm+px) {
+      width: 90%;
+    }
+
+    h2 {
+      font-size: 2.3rem;
+    }
+    p {
+      margin-top: 5vh;
+      letter-spacing: 0.1vh;
+
+      a:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.header-text {
+  font-size: 2.5rem;
+  color: $thirdColor;
+  &::selection {
+    background-color: $primaryColor;
+  }
+
+  @media (max-width: $sm+px) {
+    font-size: 2rem;
+  }
+}
+
+.header-textarea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  color: $thirdColor;
+  background-color: transparent;
+  border: none;
+  resize: none;
+  outline: none;
+  caret-color: $secondaryColor;
+  text-align: center;
+  padding: 0 3vh;
+  white-space: normal;
+  text-align: justify;
+  -moz-text-align-last: center; /* Firefox 12+ */
+  text-align-last: center;
+  height: 50%;
+  width: 70%;
+  overflow-y: hidden;
+
+  &::selection {
+    background-color: $primaryColor;
+  }
+}
+
+.main-search {
+  @include flexCenter;
+  width: 100%;
+  height: 50%;
+  margin-top: 10vh;
+  font-size: 2.2rem;
+  overflow-y: auto;
+}
+.note-search-info {
+  display: flex;
+}
+
+.search-note-data {
+  display: flex;
+}
+
+.header-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

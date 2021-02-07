@@ -1,0 +1,53 @@
+@import "config.scss";
+@import "mixin";
+
+.add-note-form {
+  width: 100%;
+  height: 75vh;
+  @include flexCenter;
+  display: flex;
+  flex-direction: column;
+  background-color: $thirdColor;
+
+  form {
+    @include flexCenter;
+    width: 70%;
+    height: 100%;
+
+    input {
+      width: 100%;
+      height: 10%;
+      margin-top: 5vh;
+      border: none;
+      border-bottom: 1px solid black;
+      appearance: none;
+      padding: 3vh;
+      outline: none;
+      font-weight: 700;
+      color: $complementaryColor;
+      font-size: 2rem;
+
+      &::placeholder {
+        color: $complementaryColor;
+        font-size: 2rem;
+      }
+    }
+    textarea {
+      width: 100%;
+      height: 80%;
+      border: none;
+      color: $complementaryColor;
+      appearance: none;
+      padding: 3vh;
+      outline: none;
+      font-weight: 700;
+      resize: none;
+      font-size: 1.2rem;
+
+      &::placeholder {
+        color: $complementaryColor;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

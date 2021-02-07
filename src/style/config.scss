@@ -1,0 +1,31 @@
+$primaryColor: #6495ed;
+$secondaryColor: #4c6293;
+$thirdColor: #fff;
+$complementaryColor: #634100;
+@import "mixin";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Lato", sans-serif;
+}
+body {
+  overflow: hidden;
+}
+
+a {
+  color: $complementaryColor;
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+::-webkit-scrollbar-track {
+  background: $thirdColor;
+}
+::-webkit-scrollbar-thumb {
+  background: $secondaryColor;
+  border-left: 1px solid #fff;
+}

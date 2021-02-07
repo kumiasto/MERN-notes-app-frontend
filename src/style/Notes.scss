@@ -1,0 +1,102 @@
+@import "config.scss";
+@import "mixin.scss";
+@import "devices-breakpoints.scss";
+
+.main {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 70%;
+  margin-top: 10vh;
+
+  &-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $secondaryColor;
+    border-top: 1px solid $thirdColor;
+    text-align: center;
+    height: 12vh;
+  }
+  &-page {
+    width: 100%;
+  }
+}
+
+.notes-info {
+  width: 100%;
+  overflow-y: auto;
+}
+
+.notes-data {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: $thirdColor;
+
+  &:nth-child(2n) {
+    background-color: $primaryColor;
+
+    .note-date-element,
+    .note-title-element,
+    .delete-button,
+    .edit-button {
+      color: $thirdColor;
+    }
+  }
+}
+.main-element {
+  display: flex;
+}
+
+.note-title {
+  width: 20%;
+  @media (max-width: $sm+px) {
+    width: 40%;
+  }
+}
+.note-date {
+  width: 20%;
+  @media (max-width: $sm+px) {
+    width: 35%;
+  }
+}
+.note-button {
+  width: 10%;
+  padding: 2vh;
+
+  @media (max-width: $sm+px) {
+    padding: 1vh;
+  }
+}
+
+.note-title-element {
+  padding: 2vh 0;
+  padding-left: 5vh;
+  font-size: 1.2rem;
+  letter-spacing: 0.1vh;
+  color: $primaryColor;
+  font-weight: 700;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: $sm+px) {
+    padding-left: 0;
+    font-size: 1rem;
+  }
+
+  &:nth-child(2n) {
+    color: red;
+  }
+}
+
+.note-date-element {
+  padding: 2vh 0;
+  font-size: 1rem;
+  color: $primaryColor;
+  font-weight: 700;
+  letter-spacing: 0.1vh;
+}

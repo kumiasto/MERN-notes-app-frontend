@@ -1,0 +1,18 @@
+@mixin flexCenter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin buttonStyle {
+  cursor: pointer;
+  border: none;
+  border-radius: 15px;
+  letter-spacing: 0.2vh;
+  outline: none;
+  transition: all 0.5s;
+  font-weight: 700;
+  letter-spacing: 0.2vh;
+  background-color: #fff;
+}
