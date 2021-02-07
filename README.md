@@ -9,7 +9,7 @@
 * search specific note for title
 * dark mode
 
-___
+---
 
 ### Technologies
 * React (Context API, Hooks, React Router)
