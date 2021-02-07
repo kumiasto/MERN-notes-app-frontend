@@ -19,6 +19,7 @@
 * Environment variables
 * bcrypt
 
+***
 
 ### Front End:
 #### The front-end is hosted on Netlify.
