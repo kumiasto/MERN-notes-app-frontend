@@ -9,7 +9,6 @@
 * search specific note for title
 * dark mode
 
----
 
 ### Technologies
 * React (Context API, Hooks, React Router)
@@ -19,6 +18,7 @@
 * JSON Web Tokens
 * Environment variables
 * bcrypt
+
 
 ### Front End:
 #### The front-end is hosted on Netlify.
