@@ -1,9 +1,8 @@
 import React, { useState, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
-
+import { SERVER_URL } from "../config/serverURL";
 import { UserContext } from "../context/UserContext";
 import { AuthContext } from "../context/AuthContext";
-
 import "../style/Signup.scss";
 import "../style/layout.scss";
 import "../style/button.scss";
@@ -32,7 +31,7 @@ const Signup = () => {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const res = await fetch("/signin", {
+    const res = await fetch(`${SERVER_URL}/signin`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

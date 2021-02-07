@@ -1,12 +1,11 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { useHistory } from "react-router-dom";
-
+import { SERVER_URL } from "../../config/serverURL";
 import Navbar from "../Nav/Navbar";
 import "../../style/AddNote.scss";
 import "../../style/button.scss";
 import "../../style/layout.scss";
-
 import InfoIcon from "@material-ui/icons/Info";
 
 const AddNote = () => {
@@ -20,7 +19,7 @@ const AddNote = () => {
 
   async function createNote(e) {
     e.preventDefault();
-    const res = await fetch("/note/add", {
+    const res = await fetch(`${SERVER_URL}/note/add`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-
+import { SERVER_URL } from "../../config/serverURL";
 import Navbar from "../Nav/Navbar";
 import { UserContext } from "../../context/UserContext";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
@@ -15,7 +15,7 @@ const SearchNote = () => {
 
   async function fetchData(e) {
     e.preventDefault();
-    const res = await fetch("/note/search", {
+    const res = await fetch(`${SERVER_URL}/note/search`, {
       method: "GET",
       headers: { "user-id": userData.user, "note-title": note },
     });

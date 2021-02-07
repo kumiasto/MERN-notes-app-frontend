@@ -1,11 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-
+import { SERVER_URL } from "../../config/serverURL";
 import Navbar from "../Nav/Navbar";
 import { NoteContext } from "../../context/NoteContext";
 import "../../style/Notes.scss";
 import "../../style/layout.scss";
-
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 
@@ -17,7 +16,7 @@ const MainPage = () => {
   useEffect(() => {
     async function fetchData() {
       let token = localStorage.getItem("auth-token");
-      const res = await fetch("/notes/get", {
+      const res = await fetch(`${SERVER_URL}/notes/get`, {
         method: "GET",
         headers: { "x-auth-token": token },
       });
@@ -54,7 +53,7 @@ const MainPage = () => {
   }, []);
 
   async function deleteNote(userId) {
-    const res = await fetch("/note/delete", {
+    const res = await fetch(`${SERVER_URL}/note/delete`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

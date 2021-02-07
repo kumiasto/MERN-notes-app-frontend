@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams, useHistory } from "react-router-dom";
-
+import { SERVER_URL } from "../../config/serverURL";
 import Navbar from "../Nav/Navbar";
 import "../../style/NoteDetails.scss";
 import "../../style/layout.scss";
 import "../../style/button.scss";
-
 import InfoIcon from "@material-ui/icons/Info";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
@@ -29,7 +28,7 @@ const NoteDetails = () => {
   useEffect(() => {
     async function fetchData() {
       let token = localStorage.getItem("auth-token");
-      const res = await fetch("/note/get", {
+      const res = await fetch(`${SERVER_URL}/note/get`, {
         method: "GET",
         headers: { "x-auth-token": token, "note-id": id },
       });
@@ -43,7 +42,7 @@ const NoteDetails = () => {
   }, []);
 
   async function updateNote() {
-    const res = await fetch("/note/update", {
+    const res = await fetch(`${SERVER_URL}/note/update`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
