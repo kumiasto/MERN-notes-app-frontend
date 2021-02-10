@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { SERVER_URL } from "../config/serverURL";
 
 export const UserContext = createContext();
 
@@ -19,14 +20,14 @@ const UserContextProvider = (props) => {
       if (token === null) {
         localStorage.setItem("auth-token", "");
       }
-      const tokenRes = await fetch("/validToken", {
+      const tokenRes = await fetch(`${SERVER_URL}/validToken`, {
         method: "POST",
         headers: { "x-auth-token": token },
       });
       const tokenIsValid = await tokenRes.json();
 
       if (tokenIsValid) {
-        const userRes = await fetch("/user", {
+        const userRes = await fetch(`${SERVER_URL}/user`, {
           method: "GET",
           headers: { "x-auth-token": token },
         });
