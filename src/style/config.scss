@@ -29,3 +29,12 @@ a {
   background: $secondaryColor;
   border-left: 1px solid #fff;
 }
+button {
+  @include buttonStyle;
+}
+
+textarea {
+  border: none;
+  outline: none;
+  resize: none;
+}

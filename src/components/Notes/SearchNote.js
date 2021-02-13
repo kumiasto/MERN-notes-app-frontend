@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { SERVER_URL } from "../../config/serverURL";
 import Navbar from "../Nav/Navbar";
 import { UserContext } from "../../context/UserContext";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import "../../style/form.scss";
-import "../../style/button.scss";
+import "../../style/SearchNote.scss";
 import "../../style/layout.scss";
 
 const SearchNote = () => {
@@ -25,9 +24,7 @@ const SearchNote = () => {
         <div key={_id} className="notes-data">
           <div className="note-title">
             <Link to={`/note/${_id}`}>
-              <p className="note-title-element" style={{ fontSize: "1.6rem" }}>
-                {title}
-              </p>
+              <p className="note-title-element search-title-element">{title}</p>
             </Link>
           </div>
         </div>
@@ -57,10 +54,11 @@ const SearchNote = () => {
             onChange={(e) => {
               setNote(e.target.value);
             }}
-            placeholder="Wpisz tytuł..."
+            placeholder="Tytuł..."
+            maxLength="25"
           />
           <button className="search-button">
-            <ArrowForwardIcon style={{ fontSize: "2rem" }} />
+            <ArrowForwardIcon className="arrow-forward-icon" />
           </button>
         </form>
 

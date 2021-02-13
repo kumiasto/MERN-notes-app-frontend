@@ -1,7 +1,29 @@
+@import "devices-breakpoints.scss";
+
 .error {
   display: flex;
   justify-content: center;
   align-items: center;
   color: rgb(247, 21, 21);
   font-weight: bold;
+  margin-top: 0.3vh;
+
+  @media screen and (min-width: $sm+px) {
+    font-size: 1.4rem;
+  }
+  @media screen and (min-width: $md+px) {
+    font-size: 2rem;
+  }
+  @media screen and (min-width: $lg+px) {
+    font-size: 2rem;
+  }
+
+  &-icon {
+    @media screen and (min-width: $md+px) {
+      font-size: 2rem !important;
+    }
+    @media screen and (min-width: $lg+px) {
+      font-size: 2.7rem !important;
+    }
+  }
 }

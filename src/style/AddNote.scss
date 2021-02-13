@@ -1,5 +1,6 @@
 @import "config.scss";
 @import "mixin";
+@import "devices-breakpoints.scss";
 
 .add-note-form {
   width: 100%;
@@ -11,8 +12,12 @@
 
   form {
     @include flexCenter;
-    width: 70%;
+    width: 90%;
     height: 100%;
+
+    @media screen and (min-width: $lg+px) {
+      width: 60%;
+    }
 
     input {
       width: 100%;
@@ -25,11 +30,31 @@
       outline: none;
       font-weight: 700;
       color: $complementaryColor;
-      font-size: 2rem;
+      font-size: 1.4rem;
+
+      @media screen and (min-width: $sm+px) {
+        font-size: 2.3rem;
+      }
+      @media screen and (min-width: $md+px) {
+        font-size: 2.8rem;
+      }
+      @media screen and (min-width: $lg+px) {
+        font-size: 2.6rem;
+      }
 
       &::placeholder {
         color: $complementaryColor;
-        font-size: 2rem;
+        font-size: 1.5rem;
+
+        @media screen and (min-width: $sm+px) {
+          font-size: 2.3rem;
+        }
+        @media screen and (min-width: $md+px) {
+          font-size: 2.8rem;
+        }
+        @media screen and (min-width: $lg+px) {
+          font-size: 3rem;
+        }
       }
     }
     textarea {
@@ -40,14 +65,55 @@
       appearance: none;
       padding: 3vh;
       outline: none;
-      font-weight: 700;
       resize: none;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+
+      @media screen and (min-width: $sm+px) {
+        font-size: 1.7rem;
+      }
+      @media screen and (min-width: $md+px) {
+        font-size: 2rem;
+      }
+      @media screen and (min-width: $lg+px) {
+        font-size: 2.3rem;
+      }
 
       &::placeholder {
         color: $complementaryColor;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+
+        @media screen and (min-width: $sm+px) {
+          font-size: 1.7rem;
+        }
+        @media screen and (min-width: $md+px) {
+          font-size: 2rem;
+        }
+        @media screen and (min-width: $lg+px) {
+          font-size: 2.3rem;
+        }
       }
+    }
+  }
+}
+.add-note-button,
+.update-note-button {
+  padding: 2vh 8.5vh;
+  margin-top: 5vh;
+  font-size: 1rem;
+  background-color: $primaryColor;
+  color: $thirdColor;
+
+  @media screen and (min-width: $sm+px) {
+    font-size: 1.6rem;
+  }
+  @media screen and (min-width: $md+px) {
+    font-size: 1.9rem;
+  }
+  @media screen and (min-width: $lg+px) {
+    font-size: 2rem;
+    &:hover {
+      background-color: $secondaryColor;
+      color: $thirdColor;
     }
   }
 }

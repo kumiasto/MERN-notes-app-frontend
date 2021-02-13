@@ -1,23 +1,22 @@
 @import "config.scss";
+@import "devices-breakpoints.scss";
 
 .note-details-content {
-  width: 70%;
+  width: 95%;
   height: 70%;
-  border: none;
-  outline: none;
-  resize: none;
   margin-top: 5vh;
   font-size: 2.5vh;
   background: #fff;
-  box-shadow:
-    /* The top layer shadow */ 0 -1px 1px rgba(0, 0, 0, 0.15),
-    /* The second layer */ 0 -10px 0 -5px #eee,
-    /* The second layer shadow */ 0 -10px 1px -4px rgba(0, 0, 0, 0.15),
-    /* The third layer */ 0 -20px 0 -10px #eee,
-    /* The third layer shadow */ 0 -20px 1px -9px rgba(0, 0, 0, 0.15);
-  /* Padding for demo purposes */
+  color: $complementaryColor;
+  box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.15), 0 -10px 0 -5px #eee,
+    0 -10px 1px -4px rgba(0, 0, 0, 0.15), 0 -20px 0 -10px #eee,
+    0 -20px 1px -9px rgba(0, 0, 0, 0.15);
   padding: 30px;
   border: 1px solid rgba(0, 0, 0, 0.15);
+
+  @media screen and (min-width: $lg+px) {
+    width: 60%;
+  }
 }
 .main-notes {
   width: 100%;
@@ -36,7 +35,52 @@
 .info-details {
   width: 10vh;
   height: 10vh;
-  background-color: green;
+}
+.arrow-back-icon {
+  position: absolute;
+  left: 3vh;
+  cursor: pointer;
+  color: $thirdColor;
+  font-size: 1.4rem !important;
+
+  @media screen and (min-width: $sm+px) {
+    font-size: 2.8rem !important;
+  }
+  @media screen and (min-width: $md+px) {
+    font-size: 3rem !important;
+  }
+  @media screen and (min-width: $lg+px) {
+    font-size: 4rem !important;
+    left: 10vh;
+  }
 }
 
-//https://www.w3schools.com/css/css_tooltip.asp
+.header-textarea {
+  font-size: 1.3rem;
+  color: $thirdColor;
+  background-color: transparent;
+  caret-color: $thirdColor;
+  text-align: center;
+  -moz-text-align-last: center;
+  text-align-last: center;
+  overflow-y: hidden;
+  width: 50%;
+
+  @media screen and (min-width: $sm+px) {
+    font-size: 2rem;
+    width: 80%;
+    height: 50%;
+  }
+  @media screen and (min-width: $md+px) {
+    font-size: 2.4rem;
+    width: 80%;
+  }
+  @media screen and (min-width: $lg+px) {
+    font-size: 4rem;
+    height: 50%;
+  }
+
+  &::selection {
+    background-color: $primaryColor;
+  }
+}

@@ -7,7 +7,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { UserContext } from "../../context/UserContext";
 import { NoteContext } from "../../context/NoteContext";
 import { AuthContext } from "../../context/AuthContext";
-import "../../style/navigation.scss";
+import "../../style/navbar.scss";
 
 const Navbar = () => {
   const { setUserData } = useContext(UserContext);
@@ -30,19 +30,15 @@ const Navbar = () => {
   return (
     <nav className="navbar-nav">
       <Link to="/notes">
-        <HomeIcon className="navbar-icon" style={{ fontSize: "2.5rem" }} />
+        <HomeIcon className="navbar-icon" />
       </Link>
       <Link to="/note/add">
-        <NoteAddIcon className="navbar-icon" style={{ fontSize: "2.5rem" }} />
+        <NoteAddIcon className="navbar-icon" />
       </Link>
       <Link to="/note/search">
-        <SearchIcon className="navbar-icon" style={{ fontSize: "2.5rem" }} />
+        <SearchIcon className="navbar-icon" />
       </Link>
-      <ExitToAppIcon
-        onClick={userLogout}
-        className="navbar-icon"
-        style={{ fontSize: "2.5rem", cursor: "pointer" }}
-      />
+      <ExitToAppIcon onClick={userLogout} className="navbar-icon" />
     </nav>
   );
 };

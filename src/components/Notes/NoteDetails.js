@@ -4,7 +4,6 @@ import { SERVER_URL } from "../../config/serverURL";
 import Navbar from "../Nav/Navbar";
 import "../../style/NoteDetails.scss";
 import "../../style/layout.scss";
-import "../../style/button.scss";
 import InfoIcon from "@material-ui/icons/Info";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
@@ -71,7 +70,6 @@ const NoteDetails = () => {
         <header className="container-header">
           <ArrowBackIcon
             className="arrow-back-icon"
-            style={{ fontSize: "2rem" }}
             onClick={() => {
               history.push("/notes");
             }}
@@ -93,7 +91,7 @@ const NoteDetails = () => {
           ></textarea>
           {contentError ? (
             <span className="error">
-              <InfoIcon />
+              <InfoIcon className="error-icon" />
               {contentError}
             </span>
           ) : null}

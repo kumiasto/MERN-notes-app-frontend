@@ -3,10 +3,8 @@ import { useHistory, Link } from "react-router-dom";
 import { SERVER_URL } from "../config/serverURL";
 import { UserContext } from "../context/UserContext";
 import { AuthContext } from "../context/AuthContext";
-import "../style/Signup.scss";
+import "../style/authForm.scss";
 import "../style/layout.scss";
-import "../style/button.scss";
-import "../style/form.scss";
 import "../style/errors.scss";
 
 const Signup = () => {
@@ -93,7 +91,7 @@ const Signup = () => {
           {passwordError ? (
             <span className="error">{passwordError}</span>
           ) : null}
-          <button className="form-container-button" onClick={handleSubmit}>
+          <button className="form-auth-button" onClick={handleSubmit}>
             Zaloguj się
           </button>
         </form>

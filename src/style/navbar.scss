@@ -1,0 +1,33 @@
+@import "config.scss";
+@import "mixin.scss";
+@import "devices-breakpoints.scss";
+
+.navbar-nav {
+  @include flexCenter;
+  color: $thirdColor;
+  background-color: $primaryColor;
+  height: 100vh;
+  width: 10%;
+  padding: 0 1vh;
+  border-top: 1px solid $thirdColor;
+  border-right: 1px solid $thirdColor;
+
+  @media screen and (min-width: $lg+px) {
+    width: 5%;
+  }
+}
+.navbar-icon {
+  color: $thirdColor;
+  margin-top: 5vh;
+  font-size: 1.6rem !important;
+
+  @media screen and (min-width: $sm+px) {
+    font-size: 3rem !important;
+  }
+  @media screen and (min-width: $md+px) {
+    font-size: 3.8rem !important;
+  }
+  @media screen and (min-width: $lg+px) {
+    font-size: 4rem !important;
+  }
+}

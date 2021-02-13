@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import "../style/Welcome.scss";
-import "../style/button.scss";
 
 const Welcome = () => {
   return (
@@ -11,17 +10,17 @@ const Welcome = () => {
         <h1>Wszystkie notatki w jednym miejscu!</h1>
         <div className="welcome-page-signin">
           <p>
-            Jeżeli posiadasz konto możesz zalogować się klikając w <br />
-            poniższy przycisk
+            Jeżeli posiadasz konto możesz zalogować się klikając w poniższy
+            przycisk
           </p>
           <Link to="/signin">
-            <button className="welcome-button">Zaloguj się</button>
+            <button className="welcome-page-button">Zaloguj się</button>
           </Link>
         </div>
         <div className="welcome-page-signup">
           <p>Możesz również utworzyć konto użytkownika</p>
           <Link to="/signup">
-            <button className="welcome-button">Załóż konto</button>
+            <button className="welcome-page-button">Załóż konto</button>
           </Link>
         </div>
       </div>

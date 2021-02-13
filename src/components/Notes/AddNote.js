@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import { SERVER_URL } from "../../config/serverURL";
 import Navbar from "../Nav/Navbar";
 import "../../style/AddNote.scss";
-import "../../style/button.scss";
 import "../../style/layout.scss";
 import InfoIcon from "@material-ui/icons/Info";
 
@@ -61,12 +60,6 @@ const AddNote = () => {
                 setTitle(e.target.value);
               }}
             />
-            {titleError ? (
-              <span className="error">
-                <InfoIcon />
-                {titleError}
-              </span>
-            ) : null}
             <textarea
               value={content}
               placeholder="Zacznij pisać..."
@@ -74,9 +67,15 @@ const AddNote = () => {
                 setContent(e.target.value);
               }}
             />
+            {titleError ? (
+              <span className="error">
+                <InfoIcon className="error-icon" />
+                {titleError}
+              </span>
+            ) : null}
             {contentError ? (
               <span className="error">
-                <InfoIcon />
+                <InfoIcon className="error-icon" />
                 {contentError}
               </span>
             ) : null}
