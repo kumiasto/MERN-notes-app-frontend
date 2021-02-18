@@ -79,7 +79,7 @@ const Signup = () => {
             value={email}
             placeholder="Email"
           />
-          {emailError ? <span className="error">{emailError}</span> : null}
+          {emailError && <span className="error">{emailError}</span>}
 
           <input
             onChange={onPasswordChange}
@@ -89,9 +89,8 @@ const Signup = () => {
             value={password}
             placeholder="Hasło"
           />
-          {passwordError ? (
-            <span className="error">{passwordError}</span>
-          ) : null}
+          {passwordError && <span className="error">{passwordError}</span>}
+
           <button className="form-auth-button" onClick={handleSubmit}>
             Zaloguj się
           </button>

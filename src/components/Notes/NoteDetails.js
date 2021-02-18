@@ -75,18 +75,18 @@ const NoteDetails = () => {
             value={noteContent}
             onChange={(e) => setNoteContent(e.target.value)}
           ></textarea>
-          {contentError ? (
+          {contentError && (
             <span className="error">
               <InfoIcon className="error-icon" />
               {contentError}
             </span>
-          ) : null}
+          )}
 
-          {prevNote ? (
+          {prevNote && (
             <button className="update-note-button" onClick={updateNote}>
               Zapisz
             </button>
-          ) : null}
+          )}
         </div>
       </section>
     </section>

@@ -67,18 +67,18 @@ const AddNote = () => {
                 setContent(e.target.value);
               }}
             />
-            {titleError ? (
+            {titleError && (
               <span className="error">
                 <InfoIcon className="error-icon" />
                 {titleError}
               </span>
-            ) : null}
-            {contentError ? (
+            )}
+            {contentError && (
               <span className="error">
                 <InfoIcon className="error-icon" />
                 {contentError}
               </span>
-            ) : null}
+            )}
             <button className="add-note-button" onClick={createNote}>
               Zapisz
             </button>

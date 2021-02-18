@@ -63,7 +63,7 @@ const Signup = () => {
             value={email}
             placeholder="Email"
           />
-          {emailError ? <span className="error">{emailError}</span> : null}
+          {emailError && <span className="error">{emailError}</span>}
 
           <input
             onChange={(e) => setPassword(e.target.value)}
@@ -72,9 +72,7 @@ const Signup = () => {
             value={password}
             placeholder="Hasło"
           />
-          {passwordError ? (
-            <span className="error">{passwordError}</span>
-          ) : null}
+          {passwordError && <span className="error">{passwordError}</span>}
 
           <button className="form-auth-button" onClick={handleSubmit}>
             Zarejestruj się
