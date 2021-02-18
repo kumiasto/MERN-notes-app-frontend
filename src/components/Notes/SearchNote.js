@@ -1,11 +1,11 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { SERVER_URL } from "../../config/serverURL";
 import Navbar from "../Nav/Navbar";
 import { UserContext } from "../../context/UserContext";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import "../../style/SearchNote.scss";
 import "../../style/layout.scss";
+import { search_note } from "../../request/post_search_note_request";
 
 const SearchNote = () => {
   const [note, setNote] = useState("");
@@ -14,11 +14,9 @@ const SearchNote = () => {
 
   async function fetchData(e) {
     e.preventDefault();
-    const res = await fetch(`${SERVER_URL}/note/search`, {
-      method: "GET",
-      headers: { "user-id": userData.user, "note-title": note },
-    });
-    const data = await res.json();
+
+    const data = await search_note("/note/search", userData.user, note);
+
     const renderNotes = data.map(({ _id, title }) => {
       return (
         <div key={_id} className="notes-data">

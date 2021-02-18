@@ -1,21 +1,20 @@
 import React, { useState, useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
-import { SERVER_URL } from "../config/serverURL";
 import { UserContext } from "../context/UserContext";
 import { AuthContext } from "../context/AuthContext";
 import "../style/authForm.scss";
 import "../style/layout.scss";
 import "../style/errors.scss";
 
+import { post_auth } from "../request/post_auth_request";
+
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-
   const { setUserData } = useContext(UserContext);
   const { setIsAuth } = useContext(AuthContext);
-
   const history = useHistory();
 
   function onEmailChange(e) {
@@ -26,34 +25,36 @@ const Signup = () => {
     setPassword(e.target.value);
   }
 
+  function handleEmailErrors(errMessage) {
+    setEmailError(errMessage);
+    setTimeout(() => {
+      setEmailError(null);
+    }, 2000);
+  }
+
+  function handlePasswordErrors(errMessage) {
+    setPasswordError(errMessage);
+    setTimeout(() => {
+      setPasswordError(null);
+    }, 2000);
+  }
+
+  function getErrors(value) {
+    return Object.values(value).filter((message) => message);
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const res = await fetch(`${SERVER_URL}/signin`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
-
-    const { token, user, emailError, passwordError } = await res.json();
+    const { token, user, emailError, passwordError } = await post_auth(
+      "signin",
+      email,
+      password
+    );
 
     if (emailError || passwordError) {
-      const errEmail = Object.values(emailError).filter((message) => message);
-      setEmailError(errEmail);
-      setTimeout(() => {
-        setEmailError(null);
-      }, 2000);
-
-      const errPassword = Object.values(passwordError).filter(
-        (message) => message
-      );
-      setPasswordError(errPassword);
-      setTimeout(() => {
-        setPasswordError(null);
-      }, 2000);
+      handleEmailErrors(getErrors(emailError));
+      handlePasswordErrors(getErrors(passwordError));
     } else {
       localStorage.setItem("auth-token", token);
       setUserData({

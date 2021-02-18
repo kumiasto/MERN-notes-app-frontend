@@ -7,40 +7,39 @@ import "../style/authForm.scss";
 import "../style/layout.scss";
 import "../style/errors.scss";
 
+import { post_auth } from "../request/post_auth_request";
+
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-
   const { setUserData } = useContext(UserContext);
   const { setIsAuth } = useContext(AuthContext);
-
   const history = useHistory();
+
+  function handleEmailErrors(errMessage) {
+    setEmailError(errMessage);
+    setTimeout(() => {
+      setEmailError(null);
+    }, 2000);
+  }
+
+  function handlePasswordErrors(errMessage) {
+    setPasswordError(errMessage);
+    setTimeout(() => {
+      setPasswordError(null);
+    }, 2000);
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const res = await fetch(`${SERVER_URL}/signup`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    });
-
-    const { token, user, errors } = await res.json();
+    const { token, user, errors } = await post_auth("signup", email, password);
 
     if (errors) {
-      setEmailError(errors.email);
-      setTimeout(() => {
-        setEmailError(null);
-      }, 2000);
-      setPasswordError(errors.password);
-      setTimeout(() => {
-        setPasswordError(null);
-      }, 2000);
+      handleEmailErrors(errors.email);
+      handlePasswordErrors(errors.password);
     } else {
       localStorage.setItem("auth-token", token);
       setUserData({

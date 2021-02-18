@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { SERVER_URL } from "../../config/serverURL";
 import Navbar from "../Nav/Navbar";
 import "../../style/NoteDetails.scss";
 import "../../style/layout.scss";
 import InfoIcon from "@material-ui/icons/Info";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+
+import { get_note_details } from "../../request/get_note_details_request";
+import { update_note } from "../../request/post_update_note_request";
 
 const NoteDetails = () => {
   const { id } = useParams();
@@ -26,13 +28,7 @@ const NoteDetails = () => {
 
   useEffect(() => {
     async function fetchData() {
-      let token = localStorage.getItem("auth-token");
-      const res = await fetch(`${SERVER_URL}/note/get`, {
-        method: "GET",
-        headers: { "x-auth-token": token, "note-id": id },
-      });
-
-      const { title, content } = await res.json();
+      const { title, content } = await get_note_details("/note/get", id);
 
       setNoteTitle(title);
       setNoteContent(content);
@@ -41,17 +37,7 @@ const NoteDetails = () => {
   }, []);
 
   async function updateNote() {
-    const res = await fetch(`${SERVER_URL}/note/update`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        id,
-        content: noteContent,
-        title: noteTitle,
-      }),
-    });
-
-    const data = await res.json();
+    const data = await update_note("/note/update", id, noteContent, noteTitle);
 
     if (data.errors) {
       setContentError("Brakuje tytułu lub treści");

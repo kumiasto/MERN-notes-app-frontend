@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { SERVER_URL } from "../../config/serverURL";
 import Navbar from "../Nav/Navbar";
 import { NoteContext } from "../../context/NoteContext";
 import "../../style/Notes.scss";
@@ -8,20 +7,19 @@ import "../../style/layout.scss";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 
+import { get_note } from "../../request/get_note_request";
+import { delete_note } from "../../request/delete_note_request";
+
 const MainPage = () => {
   const { userNotes, setUserNotes } = useContext(NoteContext);
 
   const history = useHistory();
 
   useEffect(() => {
-    async function fetchData() {
-      let token = localStorage.getItem("auth-token");
-      const res = await fetch(`${SERVER_URL}/notes/get`, {
-        method: "GET",
-        headers: { "x-auth-token": token },
-      });
-      const data = await res.json();
-      const renderNotes = data.map(({ _id, title, createdAt }) => {
+    async function renderNotes() {
+      const data = await get_note("/notes/get");
+
+      const notes = data.map(({ _id, title, createdAt }) => {
         return (
           <div key={_id} className="notes-data">
             <div className="note-title">
@@ -40,29 +38,24 @@ const MainPage = () => {
               </Link>
             </div>
             <div className="note-button">
-              <button className="delete-button" onClick={() => deleteNote(_id)}>
+              <button
+                className="delete-button"
+                onClick={async () => {
+                  await delete_note("/note/delete", _id);
+                  history.push("/");
+                  history.push("/notes");
+                }}
+              >
                 <DeleteIcon className="delete-button-icon" />
               </button>
             </div>
           </div>
         );
       });
-      setUserNotes(renderNotes);
+      setUserNotes(notes);
     }
-    fetchData();
+    renderNotes();
   }, []);
-
-  async function deleteNote(userId) {
-    const res = await fetch(`${SERVER_URL}/note/delete`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        id: userId,
-      }),
-    });
-    history.push("/");
-    history.push("/notes");
-  }
 
   return (
     <section className="container">

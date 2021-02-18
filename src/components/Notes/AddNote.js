@@ -1,11 +1,12 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { useHistory } from "react-router-dom";
-import { SERVER_URL } from "../../config/serverURL";
 import Navbar from "../Nav/Navbar";
 import "../../style/AddNote.scss";
 import "../../style/layout.scss";
 import InfoIcon from "@material-ui/icons/Info";
+
+import { add_note } from "../../request/post_add_note_request";
 
 const AddNote = () => {
   const [title, setTitle] = useState("");
@@ -18,21 +19,20 @@ const AddNote = () => {
 
   async function createNote(e) {
     e.preventDefault();
-    const res = await fetch(`${SERVER_URL}/note/add`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        title,
-        content,
-        user: userData.user,
-      }),
-    });
-    const { errors } = await res.json();
+
+    const { errors } = await add_note(
+      "/note/add",
+      title,
+      content,
+      userData.user
+    );
+
     if (errors) {
       setTitleError(errors.title);
       setTimeout(() => {
         setTitleError(null);
       }, 2000);
+
       setContentError(errors.content);
       setTimeout(() => {
         setContentError(null);
