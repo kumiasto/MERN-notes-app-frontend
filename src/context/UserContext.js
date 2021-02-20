@@ -18,7 +18,7 @@ const UserContextProvider = (props) => {
     const isLogin = async () => {
       let token = localStorage.getItem("auth-token");
       if (token === null) {
-        localStorage.setItem("auth-token", "");
+        return;
       }
       const tokenRes = await fetch(`${SERVER_URL}/validToken`, {
         method: "POST",
