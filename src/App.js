@@ -5,7 +5,7 @@ import "./style/config.scss";
 import Header from "./components/Nav/Header";
 import Signup from "./components/Signup";
 import Signin from "./components/Signin";
-import Notes from "./components/Notes/Notes";
+import MainPage from "./components/Notes/MainPage";
 import Welcome from "./components/Welcome";
 import AddNote from "./components/Notes/AddNote";
 import SearchNote from "./components/Notes/SearchNote";
@@ -28,7 +28,7 @@ function App() {
                 <Route path="/" exact component={Welcome} />
                 <Route path="/signin" component={Signin} />
                 <Route path="/signup" component={Signup} />
-                <ProtectedRoute path="/notes" exact component={Notes} />
+                <ProtectedRoute path="/notes" exact component={MainPage} />
                 <ProtectedRoute path="/note/add" component={AddNote} />
                 <ProtectedRoute path="/note/search" component={SearchNote} />
                 <ProtectedRoute path="/note/:id" component={NoteDetails} />
