@@ -1,44 +1,64 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
-import "./style/config.scss";
-import Header from "./components/Nav/Header";
-import Signup from "./components/Signup";
-import Signin from "./components/Signin";
-import MainPage from "./components/Notes/MainPage";
-import Welcome from "./components/Welcome";
-import AddNote from "./components/Notes/AddNote";
-import SearchNote from "./components/Notes/SearchNote";
-import NoteDetails from "./components/Notes/NoteDetails";
-import NotFound from "./components/NotFound";
+import Signup from "./pages/Signup";
+import Signin from "./pages/Signin";
+import AddNote from "./pages/AddNote";
+import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UserContextProvider from "./context/UserContext";
 import NoteContextProvider from "./context/NoteContext";
 import AuthContextProvider from "./context/AuthContext";
+import Home from "./pages/Home";
+import "./style/font.scss";
+import "./style/config.scss";
+import { pink, purple, red, teal } from "@material-ui/core/colors";
+import Layout from "./components/Layout";
+import { AuthContext } from "./context/AuthContext";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: teal,
+    secondary: pink,
+    error: {
+      main: red[500],
+    },
+  },
+  typography: {
+    fontFamily: "Lato",
+  },
+});
 
 function App() {
   return (
-    <Router>
-      <AuthContextProvider>
-        <UserContextProvider>
-          <NoteContextProvider>
-            <div className="App">
-              <Header />
-              <Switch>
-                <Route path="/" exact component={Welcome} />
-                <Route path="/signin" component={Signin} />
-                <Route path="/signup" component={Signup} />
-                <ProtectedRoute path="/notes" exact component={MainPage} />
-                <ProtectedRoute path="/note/add" component={AddNote} />
-                <ProtectedRoute path="/note/search" component={SearchNote} />
-                <ProtectedRoute path="/note/:id" component={NoteDetails} />
-                <Route path="*" component={NotFound} />
-              </Switch>
-            </div>
-          </NoteContextProvider>
-        </UserContextProvider>
-      </AuthContextProvider>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <AuthContextProvider>
+          <UserContextProvider>
+            <NoteContextProvider>
+              <Layout>
+                <Switch>
+                  <Route path="/" exact>
+                    <Redirect to="/notes" />
+                  </Route>
+                  <Route path="/signin" component={Signin} />
+                  <Route path="/signup" component={Signup} />
+                  <ProtectedRoute path="/notes" exact component={Home} />
+                  <ProtectedRoute path="/note/add" component={AddNote} />
+                  <Route path="*" component={NotFound} />
+                </Switch>
+              </Layout>
+            </NoteContextProvider>
+          </UserContextProvider>
+        </AuthContextProvider>
+      </Router>
+    </ThemeProvider>
   );
 }
 

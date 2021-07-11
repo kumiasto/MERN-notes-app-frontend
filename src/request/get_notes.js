@@ -1,6 +1,6 @@
 import { SERVER_URL } from "../config/serverURL";
 
-export async function get_note(PATH_URL) {
+export async function get_notes(PATH_URL) {
   let token = localStorage.getItem("auth-token");
   const res = await fetch(`${SERVER_URL}${PATH_URL}`, {
     method: "GET",
