@@ -14,6 +14,7 @@
 
 ### Technologies used:
 * React (Context API, Hooks, React Router)
+* Material-UI
 * NodeJS
 * ExpressJS
 * MongoDB
