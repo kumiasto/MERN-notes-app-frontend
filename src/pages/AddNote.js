@@ -86,7 +86,7 @@ const AddNote = () => {
           }}
           label="Title"
           variant="outlined"
-          color="primary"
+          color="secondary"
           fullWidth
           required
           className={classes.field}
@@ -110,7 +110,7 @@ const AddNote = () => {
           }}
           label="Content"
           variant="outlined"
-          color="primary"
+          color="secondary"
           fullWidth
           required
           multiline

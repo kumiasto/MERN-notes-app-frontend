@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from "react";
-import { Container } from "@material-ui/core";
+import React, { useContext, useEffect, useState } from "react";
+import { Container, TextField } from "@material-ui/core";
 import { NoteContext } from "../context/NoteContext";
 import { get_notes } from "../request/get_notes";
 import "../style/config.scss";
@@ -14,13 +14,18 @@ const useStyles = makeStyles((theme) => {
       [theme.breakpoints.up("sm")]: {
         marginLeft: drawerWidth,
       },
-      marginTop: "10vh",
+      marginTop: "7vh",
+    },
+    search: {
+      marginBottom: "5vh",
+      textAlign: "center",
     },
   };
 });
 
 const AllNotes = () => {
   const { userNotes, setUserNotes } = useContext(NoteContext);
+  const [title, setTitle] = useState("");
   const classes = useStyles();
 
   useEffect(() => {
@@ -39,18 +44,38 @@ const AllNotes = () => {
 
   return (
     <Container className={classes.container}>
+      <TextField
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        className={classes.search}
+        label="Search note for title..."
+        color="primary"
+        fullWidth
+        color="secondary"
+        startAdorment
+      />
       <Masonry
         breakpointCols={breakpoints}
         className="masonry-grid"
         columnClassName="masonry-grid_column"
       >
-        {userNotes.map((note) => {
-          return (
-            <div key={note._id} item>
-              <Note note={note} />
-            </div>
-          );
-        })}
+        {userNotes
+          .filter((note) => {
+            if (title === "") {
+              return userNotes;
+            } else if (
+              note.title.toLowerCase().includes(title.toLocaleLowerCase())
+            ) {
+              return note;
+            }
+          })
+          .map((note) => {
+            return (
+              <div key={note._id} item>
+                <Note note={note} />
+              </div>
+            );
+          })}
       </Masonry>
     </Container>
   );
